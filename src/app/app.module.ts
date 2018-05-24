@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule }    from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { HeroService } from './shared/services/hero.service';
 
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './shared/reducers/hero.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 @NgModule({
@@ -24,10 +26,14 @@ import { reducer } from './shared/reducers/hero.reducer';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot({
       hero: reducer
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25
     })
   ],
   providers: [ HeroService ],

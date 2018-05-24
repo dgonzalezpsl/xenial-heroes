@@ -1,3 +1,24 @@
-<div>
-  chao
+<div class="heroComponent">
+    <img src="{{selectedHero._picture}}">
+  <div class="form">
+    <div class="item">
+      <label>name:
+        <input [(ngModel)]="selectedHero._name" placeholder="name">
+      </label>
+    </div>
+    <div class="item">
+      <label>nickname:
+        <input [(ngModel)]="selectedHero._nickname" placeholder="nickname">
+      </label>
+    </div>
+    <div class="item">
+      <label>height:
+        <input [(ngModel)]="selectedHero._height" placeholder="height">
+      </label>
+    </div>
+    <div class="buttonContainer">
+      <div class="button" (click)="saveHero()">Save</div>
+      <div class="button" (click)="goBack()">Cancel</div>
+    </div>
+  </div>
 </div>

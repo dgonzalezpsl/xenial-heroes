@@ -15,11 +15,13 @@ import { Observable } from 'rxjs/Observable';
 export class HeroesComponent implements OnInit {
 
   private heroes: Hero[];
+  private heroesObs: Observable<Hero[]>;
 
   constructor(private heroService: HeroService, private store: Store<AppState>) { }
 
   ngOnInit() {
     this.getHeroes();
+    this.heroesObs = this.store.select('hero');
   }
 
   getHeroes(): void {
