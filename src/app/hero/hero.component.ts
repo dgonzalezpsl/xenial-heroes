@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { Hero } from '../shared/models/hero.model';
 import { AppState } from './../app.state';
+import * as HeroActions from './../shared/actions/hero.actions';
 
 @Component({
   selector: 'hero',
@@ -15,6 +16,7 @@ import { AppState } from './../app.state';
 export class HeroComponent implements OnInit {
   heroes: Hero[];
   selectedHero: Hero;
+  selectedIndex: number;
 
   constructor(private route: ActivatedRoute,
               private location: Location,
@@ -39,11 +41,14 @@ export class HeroComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     var BreakException = {};
     try {
+      let counter = 0;
       this.heroes.forEach(hero => {
         if (hero.id === id) {
-          this.selectedHero =  hero;
+          this.selectedHero = Object.create(hero);
+          this.selectedIndex = counter;
           throw BreakException;
         }
+        counter++;
       });
     } catch (e) {
       if (e !== BreakException) throw e;
@@ -52,5 +57,11 @@ export class HeroComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  saveHero(): void {
+    this.store.dispatch(new HeroActions.RemoveHero(this.selectedIndex));
+    this.store.dispatch(new HeroActions.AddHero(this.selectedHero));
+    this.goBack();
   }
 }

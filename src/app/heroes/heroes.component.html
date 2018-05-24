@@ -1,11 +1,10 @@
 <div class="heroes">
-    <div *ngFor="let hero of heroes"
-        class="hero"
-        (click)="onSelect(hero)">
-        <a routerLink="/hero/{{hero.id}}">
-            <div class="card">
+    <div *ngFor="let hero of heroes" class="hero">
+        <div class="card">
+            <a routerLink="/hero/{{hero.id}}">
                 <div class="picture">
                     <img src="{{hero._picture}}">
+                    <div class="orderer">{{hero.id}}</div>
                 </div>
                 <div class="description">
                     <div class="nickname">
@@ -15,11 +14,10 @@
                         {{hero._name}}
                     </div>
                     <div class="height">
-                        {{hero._height}}
+                        Estatura: {{hero._height}} m
                     </div>
                 </div>
-            </div>
-            <span class="badge"></span> 
-        </a>
+            </a>
+        </div>
     </div>
 </div>

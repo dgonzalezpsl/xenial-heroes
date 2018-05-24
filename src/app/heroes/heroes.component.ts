@@ -17,19 +17,25 @@ export class HeroesComponent implements OnInit {
   private heroes: Hero[];
   private heroesObs: Observable<Hero[]>;
 
-  constructor(private heroService: HeroService, private store: Store<AppState>) { }
+  constructor(private heroService: HeroService, private store: Store<AppState>) { 
+    store.select('hero').subscribe(data => {
+      this.heroes = data;
+    });
+  }
 
   ngOnInit() {
-    this.getHeroes();
-    this.heroesObs = this.store.select('hero');
+    if(this.heroes.length < 1){
+      this.getHeroes();
+    }
   }
 
   getHeroes(): void {
     this.heroService.getHeroes()
-    .subscribe(heroes => {
-      this.heroes = heroes;
-      this.heroesHandler();
-    });
+      .subscribe(heroes => {
+        this.heroes = heroes;
+        this.heroesHandler();
+      });
+
   }
 
   heroesHandler(): void {
@@ -40,9 +46,4 @@ export class HeroesComponent implements OnInit {
       tempId++;
     });
   }
-
-  onSelect(hero: Hero) {
-    alert(hero.id);
-  }
-
 }

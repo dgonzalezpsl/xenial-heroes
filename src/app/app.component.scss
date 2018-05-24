@@ -1,7 +1,15 @@
+@import "shared/styles/custom-variables.scss";
+
 .app-root {
     position: absolute;
-    min-height: 100%;
-    min-width: 100%;
+    top:0;
+    left:0;
+    right: 0;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    padding: 60px 40px;
+    @media #{$iphonePortrait} {
+        padding: 40px 5px;
+    }
 }
