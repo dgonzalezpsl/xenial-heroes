@@ -24,9 +24,10 @@ export class HeroesComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.heroes.length < 1){
-      this.getHeroes();
-    }
+    // if(this.heroes.length < 1){
+    //   this.getHeroes();
+    // }
+    this.store.dispatch(new HeroActions.GetHeroes());
   }
 
   getHeroes(): void {
@@ -35,7 +36,6 @@ export class HeroesComponent implements OnInit {
         this.heroes = heroes;
         this.heroesHandler();
       });
-
   }
 
   heroesHandler(): void {

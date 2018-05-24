@@ -491,7 +491,7 @@ module.exports = {
         "environments/environment.ts": "environments/environment.ts"
       },
       "sourceMap": true,
-      "tsConfigPath": "src/tsconfig.app.json",
+      "tsConfigPath": "./src/tsconfig.app.json",
       "skipCodeGeneration": true,
       "compilerOptions": {}
     })

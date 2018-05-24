@@ -15,10 +15,12 @@ export function reducer(state: Hero[] = [], action: HeroActions.Actions) {
         case HeroActions.ADD_HERO:
             return [...state, action.payload];
         case HeroActions.REMOVE_HERO:
-            state.splice(action.payload, 1)
-            return state;
+            const newstate = [...state];
+            return newstate;
         case HeroActions.UPDATE_HERO:
             return [...state, action.payload];
+        case HeroActions.GET_HEROES:
+            return [...state];
         default:
             return state;
     }

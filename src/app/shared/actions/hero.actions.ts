@@ -5,6 +5,8 @@ import { Hero } from './../models/hero.model'
 export const ADD_HERO       = '[HERO] Add'
 export const REMOVE_HERO    = '[HERO] Remove'
 export const UPDATE_HERO    = '[HERO] Update'
+export const GET_HEROES     = '[HEROES] Get'
+export const GET_HEROES_SUCCESS     = '[HEROES] Get Success'
 
 export class AddHero implements Action {
     readonly type = ADD_HERO
@@ -21,4 +23,14 @@ export class UpdateHeroe implements Action {
     constructor(public payload: Hero) {}
 }
 
-export type Actions = AddHero | RemoveHero | UpdateHeroe
+export class GetHeroes implements Action {
+    readonly type =  GET_HEROES;
+    payload = '';
+}
+
+export class GetHeroesSuccess implements Action {
+    readonly type =  GET_HEROES_SUCCESS;
+    constructor(public payload: any) {}
+}
+
+export type Actions = AddHero | RemoveHero | UpdateHeroe | GetHeroes | GetHeroesSuccess

@@ -16,6 +16,8 @@ import { HeroService } from './shared/services/hero.service';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './shared/reducers/hero.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { HeroEffects } from './shared/effects/hero.effects';
 
 
 @NgModule({
@@ -29,6 +31,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    EffectsModule.forRoot([HeroEffects]),
     StoreModule.forRoot({
       hero: reducer
     }),
