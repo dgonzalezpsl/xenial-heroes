@@ -21,6 +21,8 @@ export function reducer(state: Hero[] = [], action: HeroActions.Actions) {
             return [...state, action.payload];
         case HeroActions.GET_HEROES:
             return [...state];
+        case HeroActions.GET_HEROES_SUCCESS:
+            return [...state, action.payload];
         default:
             return state;
     }

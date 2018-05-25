@@ -14,6 +14,7 @@ const httpOptions = {
 };
 
 import * as heroActions from '../actions/hero.actions';
+import { ScannedActionsSubject } from '@ngrx/store';
 export type Action = heroActions.Actions;
 
 

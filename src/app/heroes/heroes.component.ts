@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from './../app.state';
 import * as HeroActions from '../shared/actions/hero.actions';
 import { Observable } from 'rxjs/Observable';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'heroes',
@@ -15,19 +16,19 @@ import { Observable } from 'rxjs/Observable';
 export class HeroesComponent implements OnInit {
 
   private heroes: Hero[];
+  private heroesContainer: any;
   private heroesObs: Observable<Hero[]>;
 
-  constructor(private heroService: HeroService, private store: Store<AppState>) { 
-    store.select('hero').subscribe(data => {
-      this.heroes = data;
+  constructor(private heroService: HeroService, private store: Store<AppState>) {
+    this.heroes = [];
+    store.select('hero').subscribe(datum => {
+      this.heroesContainer = datum[0];
+      this.heroesHandler();
     });
+    this.store.dispatch(new HeroActions.GetHeroes());
   }
 
   ngOnInit() {
-    // if(this.heroes.length < 1){
-    //   this.getHeroes();
-    // }
-    this.store.dispatch(new HeroActions.GetHeroes());
   }
 
   getHeroes(): void {
@@ -39,11 +40,19 @@ export class HeroesComponent implements OnInit {
   }
 
   heroesHandler(): void {
-    let tempId = 1;
-    this.heroes.forEach(hero => {
-      hero.id = tempId;
-      this.store.dispatch(new HeroActions.AddHero(hero));
-      tempId++;
-    });
+    if (this.heroesContainer && this.heroesContainer.length && this.heroes.length === 0) {
+      let tempId = 1;
+      this.heroesContainer.forEach(hero => {
+        const tempHero = {
+          id: tempId,
+          name: hero._name,
+          nickname: hero._nickname,
+          picture: hero._picture,
+          height: hero._height
+        };
+        this.heroes.push(tempHero);
+        tempId++;
+      });
+    }
   }
 }

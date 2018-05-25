@@ -120,6 +120,7 @@ const postcssPlugins = function (loader) {
 
 
 module.exports = {
+  devtool: 'source-map',
   "resolve": {
     "extensions": [
       ".ts",

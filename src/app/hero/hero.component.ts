@@ -14,7 +14,7 @@ import * as HeroActions from './../shared/actions/hero.actions';
 })
 
 export class HeroComponent implements OnInit {
-  heroes: Hero[];
+  heroes: any;
   selectedHero: Hero;
   selectedIndex: number;
 
@@ -22,7 +22,7 @@ export class HeroComponent implements OnInit {
               private location: Location,
               private store: Store<AppState>) { 
     store.select('hero').subscribe(data => {
-      this.heroes = data;
+      this.heroes = data[0];
     });
     this.selectedHero = {
       id: 0,
@@ -38,12 +38,12 @@ export class HeroComponent implements OnInit {
   }
 
   getHero(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id');
     var BreakException = {};
     try {
       let counter = 0;
       this.heroes.forEach(hero => {
-        if (hero.id === id) {
+        if (hero._name === id) {
           this.selectedHero = Object.create(hero);
           this.selectedIndex = counter;
           throw BreakException;
@@ -62,6 +62,7 @@ export class HeroComponent implements OnInit {
   saveHero(): void {
     this.store.dispatch(new HeroActions.RemoveHero(this.selectedIndex));
     this.store.dispatch(new HeroActions.AddHero(this.selectedHero));
+    this.heroes[this.selectedIndex] = this.selectedHero;
     this.goBack();
   }
 }

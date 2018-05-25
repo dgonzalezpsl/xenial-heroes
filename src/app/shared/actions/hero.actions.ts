@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core'
-import { Action } from '@ngrx/store'
-import { Hero } from './../models/hero.model'
+import { Injectable } from '@angular/core';
+import { Action } from '@ngrx/store';
+import { Hero } from './../models/hero.model';
 
-export const ADD_HERO       = '[HERO] Add'
-export const REMOVE_HERO    = '[HERO] Remove'
-export const UPDATE_HERO    = '[HERO] Update'
-export const GET_HEROES     = '[HEROES] Get'
-export const GET_HEROES_SUCCESS     = '[HEROES] Get Success'
+export const ADD_HERO       = '[HERO] Add';
+export const REMOVE_HERO    = '[HERO] Remove';
+export const UPDATE_HERO    = '[HERO] Update';
+export const GET_HEROES     = '[HERO] Get Heroes';
+export const GET_HEROES_SUCCESS     = '[HERO] Get Heroes Success';
 
 export class AddHero implements Action {
     readonly type = ADD_HERO

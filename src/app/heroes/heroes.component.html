@@ -1,20 +1,20 @@
 <div class="heroes">
     <div *ngFor="let hero of heroes" class="hero">
         <div class="card">
-            <a routerLink="/hero/{{hero.id}}">
+            <a routerLink="/hero/{{hero.name}}">
                 <div class="picture">
-                    <img src="{{hero._picture}}">
+                    <img src="{{hero.picture}}">
                     <div class="orderer">{{hero.id}}</div>
                 </div>
                 <div class="description">
                     <div class="nickname">
-                        {{hero._nickname}}
+                        {{hero.nickname}}
                     </div>
                     <div class="name">
-                        {{hero._name}}
+                        {{hero.name}}
                     </div>
                     <div class="height">
-                        Estatura: {{hero._height}} m
+                        Estatura: {{hero.height}} m
                     </div>
                 </div>
             </a>
