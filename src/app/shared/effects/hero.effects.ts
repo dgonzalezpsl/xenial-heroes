@@ -26,7 +26,6 @@ export class HeroEffects {
 
   @Effect()
   getHeroes: Observable<Action> = this.actions.ofType(heroActions.GET_HEROES)
-    .map((action: heroActions.GetHeroes) => action.payload)
     .mergeMap(payload => this.httpClient.get(this.heroesUrl))
     .map(data => {
       return new heroActions.GetHeroesSuccess(data);
